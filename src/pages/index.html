@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Turn-taking synthesis exploration">
+
+    <title>Social Synth</title>
+
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="./style.css">
+    
+    <!-- Import the webpage's client-side javascript files -->
+    <script src="./lib/socket.io.js"></script>
+    <!-- This first version of p5.js contains DOM stuff, which we need. -->
+    <script src="./lib/p5.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.30/Tone.min.js"></script> -->
+    <script src="./lib/Tone.min.js"></script>
+    <script src="./lib/maia-util.js"></script>
+  </head>
+  <body>
+    <main>
+      
+      <!-- Define div where game will be rendered -->
+      <div class="Content">
+        <div class="Sthg">
+          <h1>
+            Social Synth
+          </h1>
+          <p>
+            This interface enables you to experiment with synthesizer settings, taking turns in remote collaboration with up to three other people.
+          </p>
+          <p>
+            If you can see dials below, or a message about waiting for all players to join, then you've been invited to join a collaboration. Skip to point 3 in the following list.
+          </p>
+          <ol>
+            <li>
+              Add your name and the name of at least one other collaborator.
+            </li>
+            <li>
+              Press start and click the Invite buttons to get the share links to send to your collaborators. (If you're testing this alone, just open up new browser windows and pretend to be the other collaborators.)
+            </li>
+            <li>
+              Whoever's turn it is, twist and release a dial and pretty much instantly your collaborator(s) should see/hear the effects of your action.
+            </li>
+          </ol>
+          <p>
+            As long as the server is up, you can return to the link to retrieve and continue editing your synthesizer's settings, but this is just a demo so there is no ability to permanently save or download the result.
+          </p>
+        </div>
+        <div id="lovelySketch" class="Sthg"></div>
+        <div class="Sthg">
+          <p>
+            I hope you enjoyed this collaborative interface!
+          </p>
+        </div>
+        <div class="Copy">
+          <p>
+            Copyright <script>document.write(new Date().getFullYear());</script> Tom Collins
+          </p>
+        </div>
+      </div>
+      
+      <!-- Pass the sketch function (which is defined in client.js) into the p5 function, which causes the game to be rendered in the div defined above. -->
+      <script src="./client.js"></script>
+      <script type="text/javascript">
+      const myClient = new MyClient()
+      new p5(myClient.make_interface, "lovelySketch")
+      </script>
+      
+    </main>
+    
+  </body>
+</html>
