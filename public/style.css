@@ -1,0 +1,25 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.Content {
+  top: 15px;
+  position: relative;
+  width: 100%;
+  background-color: white;
+}
+
+.Content .Sthg {
+  margin: 0 15px 15px 15px;
+  padding: 10px 30px 10px 30px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.Content .Copy {
+  margin: 25px 15px 15px 15px;
+  padding: 1px;
+  border-top: 2px solid #f0f0f5;
+  text-align: center;
+}
