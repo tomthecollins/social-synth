@@ -59,7 +59,7 @@ const idToSocket = {}
 
 fastify.ready(err => {
   if (err) throw err
-  
+
   fastify.io.on("connection", socket => {
     console.log("socket.id:", socket.id)
     idToSocket[socket.id] = socket
@@ -67,7 +67,7 @@ fastify.ready(err => {
     fastify.io.on("disconnect", function(){
       delete idToSocket[socket.id]
     })
-    
+
     socket.on("room", id => {
       console.log("Room id:", id)
       idToSocket[socket.id].join(id)
@@ -118,16 +118,16 @@ fastify.post("/api/joinGame", function(req, rep){
     })
     return
   }
-  // This join() and the following emit() have to be handled by socket.on(), 
+  // This join() and the following emit() have to be handled by socket.on(),
   // because of the instantaneous nature of joining in this project.
   // idToSocket[idSocket].join(idGame)
-  
+
   // Switch the join attribute for incoming player to true.
   cg.players[playerIdx].joined = true
-  
+
   // Tell all clients in room idGame about the new player.
   // idToSocket[idSocket].to(idGame).emit("dial-assert", cg)
-  
+
   rep.send(cg)
 })
 
@@ -162,7 +162,8 @@ fastify.post("/api/updateGame", function(req, rep){
 
 
 // Run the server and report out to the logs.
-fastify.listen(process.env.PORT, function(err, address){
+const PORT = process.env.PORT || 3000;
+fastify.listen({ port: PORT, host: "0.0.0.0" }, function(err, address){
   if (err){
     fastify.log.error(err)
     process.exit(1)
